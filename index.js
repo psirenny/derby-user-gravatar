@@ -16,7 +16,6 @@ module.exports = function (options) {
 
       gravitate.profile.data(email, function (err, data) {
         if (!err) $public.set('local.gravatar', data.entry[0]);
-        console.log(data);
         next();
       });
     });
