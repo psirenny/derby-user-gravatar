@@ -3,7 +3,7 @@
     "gravitate": "*"
   },
   "name": "derby-user-gravatar",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Add gravatar support to derby-user",
   "main": "index.js",
   "scripts": {
