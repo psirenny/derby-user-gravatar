@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "gravitate": "*"
+  },
+  "name": "derby-user-gravatar",
+  "version": "0.0.0",
+  "description": "Add gravatar support to derby-user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/psirenny/derby-user-gravatar.git"
+  },
+  "keywords": [
+    "derby",
+    "user",
+    "gravatar"
+  ],
+  "author": "psirenny",
+  "license": "BSD",
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/psirenny/derby-user-gravatar/issues"
+  }
+}
