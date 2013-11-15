@@ -1,6 +1,22 @@
 var gravitate = require('gravitate');
 
 module.exports = function (store, options) {
+  if (store && store.hook) {
+    var model = store.createModel();
+    store.hook('change', 'usersPrivate.*.local.emails.0.value',
+      function (userId, email) {
+        var $public = model.at('usersPublic.' + userId);
+
+        $public.fetch(function (err) {
+          if (err) return console.error(err);
+          gravitate.profile.data(email, function (err, data) {
+            if (!err) $public.set('gravatar', data.entry[0]);
+          });
+        });
+      }
+    );
+  }
+
   return function (req, res, next) {
     if (req.get('Content-Type')) return next();
 
