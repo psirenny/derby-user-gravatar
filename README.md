@@ -1,7 +1,7 @@
 derby-user-gravatar
 ===================
 
-Adds [Gravatar](http://www.gravatar.com) support to [derby-user](https://github.com/psirenny/derby-user).
+Adds [Gravatar](http://www.gravatar.com) support to [derby-user](https://github.com/psirenny/derby-user).  
 **Note:** Add [racer-hooks](https://github.com/psirenny/racer-hooks) to your app so that gravatar data updates in real time after a user changes their email address.
 
 Installation
