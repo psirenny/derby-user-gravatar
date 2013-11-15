@@ -1,27 +1,27 @@
 {
+  "author": "psirenny <djtorres0@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/psirenny/derby-user-gravatar/issues"
+  },
   "dependencies": {
     "gravitate": "*"
   },
-  "name": "derby-user-gravatar",
-  "version": "0.3.0",
-  "description": "Add gravatar support to derby-user",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/psirenny/derby-user-gravatar.git"
-  },
+  "description": "Adds gravatar support to derby-user.",
   "keywords": [
     "derby",
     "user",
     "gravatar"
   ],
-  "author": "psirenny",
-  "license": "BSD",
-  "devDependencies": {},
-  "bugs": {
-    "url": "https://github.com/psirenny/derby-user-gravatar/issues"
-  }
+  "license": "MIT",
+  "main": "index.js",
+  "name": "derby-user-gravatar",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/psirenny/derby-user-gravatar.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.3.0"
 }
