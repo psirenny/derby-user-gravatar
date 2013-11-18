@@ -1,4 +1,4 @@
-derby-user-gravatar
+Derby User Gravatar
 ===================
 
 Adds [Gravatar](http://www.gravatar.com) support to [derby-user](https://github.com/psirenny/derby-user).
