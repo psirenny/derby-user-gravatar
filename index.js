@@ -1,39 +1,36 @@
+var async = require('async');
 var gravitate = require('gravitate');
+var pluck = require('pluck');
 
-module.exports = function (store, options) {
-  if (store && store.hook) {
-    var model = store.createModel();
-    store.hook('change', 'usersPrivate.*.local.emails.0.value',
-      function (userId, email) {
-        var $public = model.at('usersPublic.' + userId);
-
-        $public.fetch(function (err) {
-          if (err) return console.error(err);
-          gravitate.profile.data(email, function (err, data) {
-            if (!err) $public.set('gravatar', data.entry[0]);
-          });
-        });
-      }
-    );
-  }
-
+module.exports = function () {
   return function (req, res, next) {
-    if (req.get('Content-Type')) return next();
-
-    var model = req.getModel()
-      , userId = model.get('_session.user.id')
-      , $public = model.at('usersPublic.' + userId)
-      , $private = model.at('usersPrivate.' + userId);
-
-    model.fetch($public, $private, function (err) {
+    if (!req.isAuthenticated()) return;
+    var model = req.getModel();
+    var $user = model.at('users.' + req.user.id);
+    $user.fetch(function (err) {
       if (err) return next(err);
-      var email = $private.get('local.emails.0.value');
-      if (!email) return next();
-
-      gravitate.profile.data(email, function (err, data) {
-        if (!err) $public.set('gravatar', data.entry[0]);
+      var emails = pluck('value')($user.get('local.emails')) || [];
+      async.map(emails, gravitate.profile.data, function (err, data) {
+        if (err) return console.error(err);
+        $user.set('gravatars', data);
         next();
       });
     });
   };
+};
+
+module.exports.hook = function (store) {
+  store.hook('change', 'users.*.local.emails.*.value',
+    function (userId, index, email) {
+      var model = store.createModel();
+      var $user = model.at('users.' + userId);
+      $user.fetch(function (err) {
+        if (err) return console.error(err);
+        gravitate.profile.data(email, function (err, data) {
+          if (err) return console.error(err);
+          $user.set('gravatars.' + index, data);
+        });
+      });
+    }
+  );
 };

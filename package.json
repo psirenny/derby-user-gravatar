@@ -4,9 +4,11 @@
     "url": "https://github.com/psirenny/derby-user-gravatar/issues"
   },
   "dependencies": {
-    "gravitate": "*"
+    "async": "^0.9.0",
+    "gravitate": "^0.3.0",
+    "pluck": "0.0.4"
   },
-  "description": "Adds gravatar support to derby-user.",
+  "description": "Add gravatar support to derby-user.",
   "keywords": [
     "derby",
     "user",
@@ -23,5 +25,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.4.0"
+  "version": "0.5.0"
 }
