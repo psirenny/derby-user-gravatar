@@ -9,7 +9,8 @@ module.exports = function () {
     var $user = model.at('users.' + req.user.id);
     $user.fetch(function (err) {
       if (err) return next(err);
-      var emails = pluck('value')($user.get('local.emails')) || [];
+      var emails = $user.get('local.emails') || [];
+      emails = pluck('value')(emails);
       async.map(emails, gravitate.profile.data, function (err, data) {
         if (err) return console.error(err);
         $user.set('gravatars', data);
