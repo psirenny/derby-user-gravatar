@@ -26,19 +26,29 @@ In your server file, add the middleware:
 Hooks
 -----
 
-Use `gravatar.hook(store)` to have gravatar data update in real time when a user changes their email address.
+Use `gravatar.hooks()` to have gravatar data update in real time when a user changes their email address.
+
+    derby.use(gravatar.hooks());
 
 Dependencies
 ------------
 
-Requires [derby-hook](https://github.com/derbyparty/derby-hook).
+Requires [derby-hook](https://github.com/derbyparty/derby-hook) in order to use `gravatar.hook()`.
 
 Usage
 -----
 
+    var derby = require('derby');
     var gravatar = require('derby-user-gravatar');
-    var hook = require('derby-hook');
+    var hooks = require('racer-hooks');
+    // ...
+    // ...
 
     var store = derby.createStore({...});
-    hook(store);
-    gravatar.hook(store);
+    hooks(store);
+
+    derby
+      // racerBundle
+      // ...
+      .use(hooks())
+      .use(gravatar.hooks());
