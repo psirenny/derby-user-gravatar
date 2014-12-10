@@ -4,7 +4,7 @@ var gravitate = require('gravitate');
 
 module.exports = function () {
   return function (req, res, next) {
-    if (!req.isAuthenticated()) return;
+    if (!req.isAuthenticated()) return next();
     var model = req.getModel();
     var $user = model.at('users.' + req.user.id);
     $user.fetch(function (err) {
